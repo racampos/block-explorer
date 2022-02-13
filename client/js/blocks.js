@@ -61,7 +61,7 @@ window.addEventListener('DOMContentLoaded', event => {
 
     function addBlockToTable(block) {
         let row = insertRow();
-        row.blockNumber.innerHTML = parseInt(block.number, 16);
+        row.blockNumber.innerHTML = `<a href="block.html?height=${block.number}">${parseInt(block.number, 16)}</a>`;
         row.age.innerHTML = Math.floor(Math.abs(parseInt(block.timestamp, 16) - (Date.now() / 1000))) + " seconds ago";
         row.tx.innerHTML = `<a href="transactions.html?block=${block.number}">${block.transactions.length}</a>`;
         row.miner.innerHTML = block.miner;
