@@ -36,7 +36,7 @@ window.addEventListener('DOMContentLoaded', event => {
     thead.appendChild(hRow);
 
     async function getBlock(block) {
-        response = await axios.post(RPC_URL, {
+        let response = await axios.post(RPC_URL, {
             jsonrpc: "2.0",
             id: 1,
             method: "eth_getBlockByNumber",
