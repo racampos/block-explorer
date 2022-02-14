@@ -8,7 +8,6 @@ window.addEventListener('DOMContentLoaded', event => {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const blockNumber = urlParams.get("height") || "latest";
-    console.log(blockNumber)
 
     let table = document.createElement('table');
     let thead = document.createElement('thead');
