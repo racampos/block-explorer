@@ -66,35 +66,36 @@ window.addEventListener('DOMContentLoaded', event => {
 
     function addTxToTable(tx, block) {
         let row = insertRow();
-        row.hash.innerHTML = tx.hash;
+        row.hash.innerHTML = `<a href="transaction.html?hash=${tx.hash}">${tx.hash}</a>`;
         let method = "Eth Transfer";
         if (tx.input != "0x") {
             method = tx.input.substring(0, 10);
         }
         row.method.innerHTML = method;
-        row.block.innerHTML = parseInt(block.number, 16);
+        row.block.innerHTML = `<a href="block.html?height=${block.number}">${parseInt(block.number, 16)}</a>`
         row.age.innerHTML = Math.floor(Math.abs(parseInt(block.timestamp, 16) - (Date.now() / 1000))) + " seconds ago";
-        row.from.innerHTML = tx.from;
-        row.to.innerHTML = tx.to;
+        row.from.innerHTML = `<a href="account.html?address=${tx.from}">${tx.from}</a>`;
+        row.to.innerHTML = `<a href="account.html?address=${tx.to}">${tx.to}</a>`;
         row.value.innerHTML = Math.round(parseInt(tx.value, 16)/10**9)/10**9 + " Ether";
         return row
     }
     
     async function populateTable() {
-        console.log(blockNumber)
         let block = await getBlock(blockNumber);
         for (let tx of block.transactions) {
-            console.log(tx)
             addTxToTable(tx, block);
         }
         table.appendChild(thead);
         table.appendChild(tbody);
         new simpleDatatables.DataTable(table);
         if (blockNumber != "latest") {
-            document.getElementById('numTxs').innerHTML = `Showing transactions for block #${parseInt(block.number, 16)}.`;
+            document.getElementById('numTxs').innerHTML = `Showing transactions for block #${parseInt(block.number, 16)}`;
         } else {
-            document.getElementById('numTxs').innerHTML = `Showing transactions for the latest block.`;
-        }        
+            document.getElementById('numTxs').innerHTML = `Showing transactions for the latest block`;
+        }  
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+          })      
     }
     populateTable();
     document.getElementById('table-container').appendChild(table);
