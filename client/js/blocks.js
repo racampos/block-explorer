@@ -7,6 +7,7 @@ window.addEventListener('DOMContentLoaded', event => {
     const RPC_URL = INFURA_URL;
     const numBlocks = 20;
     let showingBlocks = numBlocks;
+    let latestBlock;
 
     let table = document.createElement('table');
     let thead = document.createElement('thead');
