@@ -4,7 +4,7 @@
 Rafael Campos
 
 ### **Live website**
-http://curso.altusdemo.cloud
+https://myblockexplorer.netlify.app
 
 ### Features:
 - Continually polls the blockchain to determine in real time when a new block is mined.
